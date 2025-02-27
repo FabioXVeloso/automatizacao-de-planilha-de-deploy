@@ -16,7 +16,7 @@ jobs:
 
       - name: Send Deploy Data to Google Sheets
         run: |
-          curl -X POST "https://script.google.com/macros/s/1h7XzkfXqSQhBnjtLTb3LUjvigDXPHBvfz2MV0OFpLQM/exec" \
+          curl -X POST "https://script.google.com/macros/s/AKfycbwdUX20jKJ-w3joUyVz99MuDNMDKwbPlvOb8vZ_2nNT1JIcB1laTy6rRA_H8L6BFyrigw/exec" \
           -H "Content-Type: application/json" \
           -d '{
                 "repository": "${{ github.repository }}",
