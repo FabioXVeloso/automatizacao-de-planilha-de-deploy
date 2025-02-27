@@ -1,0 +1,23 @@
+name: Log Deploy to Google Sheets
+
+on:
+  push:
+    branches:
+      - main
+  release:
+    types: [published]
+
+jobs:
+  log-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Deploy Data to Google Sheets
+        run: |
+          curl -X POST "https://script.google.com/macros/s/1h7XzkfXqSQhBnjtLTb3LUjvigDXPHBvfz2MV0OFpLQM/exec" \
+          -H "Content-Type: application/json" \
+          -d '{
+                "repository": "${{ github.repository }}",
+                "branch": "${{ github.ref }}",
+                "deployer": "${{ github.actor }}",
+                "commit": "${{ github.sha }}"
+              }'
