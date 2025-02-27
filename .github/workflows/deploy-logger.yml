@@ -11,13 +11,16 @@ jobs:
   log-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Send Deploy Data to Google Sheets
         run: |
           curl -X POST "https://script.google.com/macros/s/1h7XzkfXqSQhBnjtLTb3LUjvigDXPHBvfz2MV0OFpLQM/exec" \
           -H "Content-Type: application/json" \
           -d '{
                 "repository": "${{ github.repository }}",
-                "branch": "${{ github.ref }}",
+                "branch": "${{ github.ref_name }}",
                 "deployer": "${{ github.actor }}",
                 "commit": "${{ github.sha }}"
               }'
